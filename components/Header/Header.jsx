@@ -1,10 +1,10 @@
-import React from "react";
-import UnitsDropdown from "./UnitsDropdown";
+import UnitsDropdown from "../UnitsDropdown/UnitsDropdown";
+import styles from "./Header.module.css";
 
 const Header = () => {
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <img
           src='../src/assets/images/logo.svg'
           alt='weather now'

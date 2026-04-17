@@ -1,14 +1,14 @@
-import React from "react";
+import styles from "./UnitsDropdown.module.css";
 
 const UnitsDropdown = () => {
   return (
     <>
       <div
         aria-role='menu'
-        className='units-dropdown-wrapper'
+        className={styles.unitsDropdownWrapper}
       >
         <div
-          className='units-menu-top'
+          className={styles.unitsDropdownTop}
           aria-hidden='true'
         >
           <img

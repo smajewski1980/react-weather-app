@@ -21,6 +21,15 @@
   --Blue-700: hsl(248, 70%, 36%);
 }
 
+@font-face {
+  font-family: DM_Sans;
+  src: url("/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf");
+}
+@font-face {
+  font-family: Bricolage_Grotesque;
+  src: url("/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf");
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -29,4 +38,6 @@ img {
 body {
   background-color: var(--Neutral-900);
   color: var(--Neutral-0);
+  padding: 1rem;
+  font-family: DM_Sans;
 }

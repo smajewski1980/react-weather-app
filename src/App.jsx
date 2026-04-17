@@ -1,7 +1,7 @@
-import CurrentWeather from "../components/CurrentWeather";
+import CurrentWeather from "../components/CurrentWeather/CurrentWeather";
 import DailyForecast from "../components/DailyForecast";
-import Header from "../components/header";
-import Hero from "../components/Hero";
+import Header from "../components/Header/Header";
+import Hero from "../components/Hero/Hero";
 import HourlyForecast from "../components/HourlyForecast";
 import "./App.css";
 

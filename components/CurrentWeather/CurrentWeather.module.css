@@ -1,0 +1,35 @@
+.currentWeatherWrapper {
+  background-image: url("../../src/assets/images/bg-today-small.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-block: 2rem;
+  display: grid;
+  gap: 1rem;
+  place-items: center;
+  padding-block: 3rem;
+  /* outline: 2px SOLID LIME; */
+
+  .placeTimeWrapper {
+    display: grid;
+    gap: 0.5rem;
+    justify-items: center;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .iconTempWrapper {
+    display: flex;
+    font-size: 6rem;
+    font-weight: 600;
+    font-style: oblique;
+    align-items: center;
+    gap: 2rem;
+
+    img {
+      max-width: 5rem;
+    }
+  }
+}

@@ -1,15 +1,15 @@
-import React from "react";
-import CurrentCard from "./CurrentCard";
+import CurrentCard from "../CurrentCard/CurrentCard";
+import styles from "./CurrentWeather.module.css";
 
 const CurrentWeather = () => {
   return (
     <main>
-      <div className='current-weather-wrapper'>
-        <div className='place-time-wrapper'>
+      <div className={styles.currentWeatherWrapper}>
+        <div className={styles.placeTimeWrapper}>
           <h2>Name, Place</h2>
           <p>Sunday, Jan 1, 1900</p>
         </div>
-        <div className='icon-temp-wrapper'>
+        <div className={styles.iconTempWrapper}>
           <img
             src='../src/assets/images/icon-snow.webp'
             alt='snow'
