@@ -1,10 +1,10 @@
-import React from "react";
+import styles from "./CurrentCard.module.css";
 
-const CurrentCard = () => {
+const CurrentCard = ({ title, value }) => {
   return (
-    <div className='current-card'>
-      <h3>weather item</h3>
-      <p>value</p>
+    <div className={styles.currentCard}>
+      <h3>{title}</h3>
+      <p>{value}</p>
     </div>
   );
 };

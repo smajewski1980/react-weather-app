@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-block: 2rem;
+  margin-block: 2rem 0.75rem;
   display: grid;
   gap: 1rem;
   place-items: center;
@@ -32,4 +32,12 @@
       max-width: 5rem;
     }
   }
+}
+
+.currentCardWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1.25rem;
+  justify-items: center;
+  margin-block-end: 1.5rem;
 }

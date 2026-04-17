@@ -1,11 +1,11 @@
-import React from "react";
-import DailyCard from "./DailyCard";
+import DailyCard from "../DailyCard/DailyCard";
+import styles from "./DailyForecast.module.css";
 
 const DailyForecast = () => {
   return (
-    <aside>
-      <h3>DailyForecast</h3>
-      <div className='forecast-card-wrapper'>
+    <aside className={styles.dailyAside}>
+      <h3>Daily Forecast</h3>
+      <div className={styles.dailyForecastCardWrapper}>
         <DailyCard />
         <DailyCard />
         <DailyCard />

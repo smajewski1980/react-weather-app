@@ -1,14 +1,14 @@
-import React from "react";
+import styles from "./DailyCard.module.css";
 
 const DailyCard = () => {
   return (
-    <div className='daily-card'>
+    <div className={styles.dailyCard}>
       <p>day</p>
       <img
-        src=''
+        src='../../src/assets/images/icon-storm.webp'
         alt='icon'
       />
-      <div className='daily-temp-wrapper'>
+      <div className={styles.dailyTempWrapper}>
         <p>12&deg;</p>
         <p>47&deg;</p>
       </div>

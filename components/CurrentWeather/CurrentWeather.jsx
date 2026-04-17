@@ -17,10 +17,24 @@ const CurrentWeather = () => {
           <p>99&deg;</p>
         </div>
       </div>
-      <CurrentCard />
-      <CurrentCard />
-      <CurrentCard />
-      <CurrentCard />
+      <div className={styles.currentCardWrapper}>
+        <CurrentCard
+          title='Feels Like'
+          value='99&deg;'
+        />
+        <CurrentCard
+          title='Humidity'
+          value='47%'
+        />
+        <CurrentCard
+          title='Wind'
+          value='99 mph'
+        />
+        <CurrentCard
+          title='Precipitation'
+          value='0 in'
+        />
+      </div>
     </main>
   );
 };
