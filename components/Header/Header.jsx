@@ -12,6 +12,7 @@ const Header = () => {
         <Dropdown
           label='Units'
           color='dark'
+          gear={true}
         />
       </header>
     </>

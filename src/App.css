@@ -38,6 +38,6 @@ img {
 body {
   background-color: var(--Neutral-900);
   color: var(--Neutral-0);
-  padding: 1rem;
+  padding: 1rem 1rem 3rem;
   font-family: DM_Sans;
 }

@@ -10,6 +10,7 @@ const HourlyForecast = () => {
         <Dropdown
           label='weekday'
           color='light'
+          gear={false}
         />
       </div>
 
