@@ -8,7 +8,10 @@
   gap: 1rem;
   place-items: center;
   padding-block: 3rem;
-  /* outline: 2px SOLID LIME; */
+
+  @media screen and (width > 750px) {
+    background-image: url("../../src/assets/images/bg-today-large.svg");
+  }
 
   .placeTimeWrapper {
     display: grid;

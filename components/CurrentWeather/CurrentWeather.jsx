@@ -2,6 +2,8 @@ import CurrentCard from "../CurrentCard/CurrentCard";
 import styles from "./CurrentWeather.module.css";
 
 const CurrentWeather = () => {
+  const getScreenWidth = (window) => {};
+
   return (
     <main>
       <div className={styles.currentWeatherWrapper}>

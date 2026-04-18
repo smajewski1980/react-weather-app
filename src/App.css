@@ -40,4 +40,6 @@ body {
   color: var(--Neutral-0);
   padding: 1rem 1rem 3rem;
   font-family: DM_Sans;
+  max-width: 1200px;
+  margin-inline: auto;
 }

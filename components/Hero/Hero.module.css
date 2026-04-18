@@ -9,10 +9,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  @media screen and (width < 750px) {
+    flex-direction: column;
+  }
 
   .searchInputWrapper {
     position: relative;
-    margin-block-end: 1rem;
+
+    @media screen and (width < 750px) {
+      width: 100%;
+    }
 
     img {
       background-color: var(--Neutral-800);
@@ -22,10 +31,14 @@
     input {
       background-color: var(--Neutral-800);
       border: none;
-      font-size: 1.5rem;
+      font-size: 1rem;
       padding: 0.75rem 0.5rem 0.75rem 3rem;
-      flex: 1;
       border-radius: 10px;
+      width: 100%;
+
+      @media screen and (width > 750px) {
+        min-width: 500px;
+      }
 
       &::placeholder {
         color: var(--Neutral-200);
@@ -42,12 +55,15 @@
   }
 
   button {
-    font-size: 1.5rem;
-    flex: 1;
+    font-size: 1rem;
     border-radius: 10px;
     border: none;
-    padding-block: 0.75rem;
+    padding: 0.75rem 1rem;
     background-color: var(--Blue-500);
     color: var(--Neutral-0);
+
+    @media screen and (width < 750px) {
+      width: 100%;
+    }
   }
 }
