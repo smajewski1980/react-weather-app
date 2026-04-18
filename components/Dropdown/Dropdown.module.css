@@ -1,0 +1,6 @@
+.dropdownTop {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 5px;
+}
