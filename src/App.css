@@ -38,8 +38,23 @@ img {
 body {
   background-color: var(--Neutral-900);
   color: var(--Neutral-0);
-  padding: 1rem 1rem 3rem;
+  padding: 1rem 2rem 3rem;
   font-family: DM_Sans;
   max-width: 1200px;
+  margin-inline: auto;
+
+  @media screen and (width < 750px) {
+    padding: 1rem 1rem 3rem;
+  }
+}
+
+.mainLayout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.innerLayout {
+  flex-basis: 750px;
   margin-inline: auto;
 }

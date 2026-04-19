@@ -10,9 +10,13 @@ function App() {
     <>
       <Header />
       <Hero />
-      <CurrentWeather />
-      <DailyForecast />
-      <HourlyForecast />
+      <div className='mainLayout'>
+        <div className='innerLayout'>
+          <CurrentWeather />
+          <DailyForecast />
+        </div>
+        <HourlyForecast />
+      </div>
     </>
   );
 }

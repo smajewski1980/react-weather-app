@@ -1,5 +1,6 @@
 .dailyAside {
-  margin-block-end: 2rem;
+  margin-block: 1rem 2rem;
+
   h3 {
     font-weight: 500;
     margin-block-end: 1rem;
@@ -9,6 +10,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1.25rem;
+    row-gap: 1rem;
   }
 }
