@@ -4,23 +4,19 @@ import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import HourlyForecast from "../components/HourlyForecast/HourlyForecast";
 import "./App.css";
-
-// just for now
 import Error from "../components/Error/Error";
 
 function App() {
   return (
     <>
       <Header />
-      {/* <Hero /> */}
+      <Hero />
       <div className='mainLayout'>
         <div className='innerLayout'>
-          {/* just for now */}
-          <Error />
-          {/* <CurrentWeather /> */}
-          {/* <DailyForecast /> */}
+          <CurrentWeather />
+          <DailyForecast />
         </div>
-        {/* <HourlyForecast /> */}
+        <HourlyForecast />
       </div>
     </>
   );

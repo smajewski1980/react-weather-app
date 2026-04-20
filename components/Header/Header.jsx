@@ -1,4 +1,4 @@
-import Dropdown from "../Dropdown/Dropdown";
+import UnitsDropdown from "../UnitsDropdown/UnitsDropdown";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
           src='../src/assets/images/logo.svg'
           alt='weather now'
         />
-        <Dropdown
+        <UnitsDropdown
           label='Units'
           color='dark'
           gear={true}

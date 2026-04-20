@@ -2,4 +2,5 @@
   display: flex;
   gap: 0.35rem;
   border-radius: 5px;
+  cursor: pointer;
 }

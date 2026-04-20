@@ -1,0 +1,31 @@
+.hourlyDropdown {
+  appearance: base-select;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  border: none;
+  background-color: var(--Neutral-600);
+
+  &::picker(select) {
+    appearance: base-select;
+    border: none;
+    color: var(--Neutral-200);
+    position-area: block-end span-inline-start;
+    margin-block-start: 1rem;
+    border-radius: 5px;
+  }
+
+  option {
+    background-color: var(--Neutral-800);
+    padding: 0.6rem 2rem 0.6rem 1rem;
+
+    &::checkmark {
+      display: none;
+    }
+
+    &:hover,
+    :focus-visible {
+      background-color: var(--Neutral-700);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import styles from "./Dropdown.module.css";
+import styles from "./UnitsDropdown.module.css";
 
 const UnitsDropdown = ({ label, color, gear }) => {
   let dropdownColor;
@@ -11,7 +11,7 @@ const UnitsDropdown = ({ label, color, gear }) => {
 
   return (
     <>
-      <div aria-role='menu'>
+      <div role='menu'>
         <div
           className={styles.dropdownTop}
           style={{ backgroundColor: dropdownColor, padding: padding }}

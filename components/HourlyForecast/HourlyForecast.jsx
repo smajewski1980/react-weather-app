@@ -1,5 +1,6 @@
 import HourlyCard from "../HourlyCard/HourlyCard";
-import Dropdown from "../Dropdown/Dropdown";
+// import UnitsDropdown from "../UnitsDropdown/UnitsDropdown";
+import HourlyDropdown from "../HourlyDropdown/HourlyDropdown";
 import styles from "./HourlyForecast.module.css";
 
 const HourlyForecast = () => {
@@ -7,11 +8,12 @@ const HourlyForecast = () => {
     <aside className={styles.hourlyAside}>
       <div className={styles.hourlyHeader}>
         <h3>Hourly forecast</h3>
-        <Dropdown
+        {/* <UnitsDropdown
           label='weekday'
           color='light'
           gear={false}
-        />
+        /> */}
+        <HourlyDropdown />
       </div>
 
       <HourlyCard
