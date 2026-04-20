@@ -1,0 +1,36 @@
+.errorWrapper {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 1.25rem;
+  margin-block-start: 3rem;
+
+  img {
+    width: 2rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--Neutral-300);
+    max-width: 40ch;
+  }
+
+  button {
+    display: flex;
+    background-color: var(--Neutral-700);
+    color: var(--Neutral-300);
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    img {
+      filter: brightness(0.7);
+      width: 1rem;
+    }
+  }
+}
