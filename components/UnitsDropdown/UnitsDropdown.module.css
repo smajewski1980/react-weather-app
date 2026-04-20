@@ -1,6 +1,73 @@
-.dropdownTop {
-  display: flex;
-  gap: 0.35rem;
-  border-radius: 5px;
-  cursor: pointer;
+.customSelect {
+  position: relative;
+
+  .button {
+    display: flex;
+    gap: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--Neutral-700);
+    padding: 0.5rem 0.65rem;
+    color: var(--Neutral-200);
+    font: inherit;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .selectUL {
+    list-style-type: none;
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    min-width: 250px;
+    padding: 1rem 0.5rem;
+    background-color: var(--Neutral-800);
+    display: grid;
+    gap: 0.5rem;
+    border-radius: 10px;
+
+    li:first-child {
+      margin-block-end: 0.5rem;
+    }
+    li:last-child {
+      margin-block-end: 1rem;
+    }
+
+    li {
+      font-size: 1.25rem;
+      text-box-trim: trim-end;
+      text-box-edge: cap alphabetic;
+      padding: 0.75rem;
+
+      span {
+        color: var(--Neutral-300);
+      }
+    }
+
+    .clickable {
+      cursor: pointer;
+    }
+
+    .activeLi {
+      background-color: var(--Neutral-600);
+      position: relative;
+
+      &::after {
+        content: url("../../src/assets/images/icon-checkmark.svg");
+        position: absolute;
+        right: 0.75rem;
+        bottom: 0.6rem;
+        scale: 1.5;
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: 2px solid var(--Neutral-600);
+    }
+
+    .hr {
+      margin-block-start: 0.75rem;
+    }
+  }
 }

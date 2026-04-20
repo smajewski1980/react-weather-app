@@ -1,35 +1,67 @@
 import styles from "./UnitsDropdown.module.css";
+import { useState } from "react";
 
-const UnitsDropdown = ({ label, color, gear }) => {
-  let dropdownColor;
-  color === "dark"
-    ? (dropdownColor = "var(--Neutral-700)")
-    : (dropdownColor = "var(--Neutral-600)");
+const UnitsDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [units, setUnits] = useState("Imperial");
 
-  let padding;
-  color === "dark" ? (padding = "0.35rem 0.65rem") : (padding = "0.5rem 1rem");
+  // i want to set up redux, may move the above state to the store later
+
+  const handleOpenMenu = (e) => {
+    e.preventDefault();
+    setIsOpen((prev) => (prev = !prev));
+  };
 
   return (
     <>
-      <div role='menu'>
-        <div
-          className={styles.dropdownTop}
-          style={{ backgroundColor: dropdownColor, padding: padding }}
-          aria-hidden='true'
+      <div className={styles.customSelect}>
+        <button
+          id='selectBtn'
+          className={styles.button}
+          onClick={handleOpenMenu}
         >
-          {gear && (
-            <img
-              src='../src/assets/images/icon-units.svg'
-              alt='units menu'
-            />
-          )}
-
-          <p>{label}</p>
           <img
-            src='../src/assets/images/icon-dropdown.svg'
+            src='../../src/assets/images/icon-units.svg'
             alt=''
           />
-        </div>
+          <span>Units</span>
+          <img
+            src='../../src/assets/images/icon-dropdown.svg'
+            alt=''
+          />
+        </button>
+
+        {isOpen && (
+          <ul className={styles.selectUL}>
+            <li className={styles.clickable}>
+              Switch to {units == "Imperial" ? "Imperial" : "Metric"}
+            </li>
+            <hr />
+            <li>
+              <span>Temperature</span>
+            </li>
+            <li className={styles.clickable}>Celsius (&deg;C)</li>
+            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+              Farenheit (&deg;F)
+            </li>
+            <hr className={styles.hr} />
+            <li>
+              <span>Wind Speed</span>
+            </li>
+            <li className={styles.clickable}>km/h</li>
+            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+              mph
+            </li>
+            <hr className={styles.hr} />
+            <li>
+              <span>Precipitation</span>
+            </li>
+            <li className={styles.clickable}>Millimeters (mm)</li>
+            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+              Inches (in)
+            </li>
+          </ul>
+        )}
       </div>
     </>
   );

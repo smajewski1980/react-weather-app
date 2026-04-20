@@ -9,11 +9,7 @@ const Header = () => {
           src='../src/assets/images/logo.svg'
           alt='weather now'
         />
-        <UnitsDropdown
-          label='Units'
-          color='dark'
-          gear={true}
-        />
+        <UnitsDropdown />
       </header>
     </>
   );
