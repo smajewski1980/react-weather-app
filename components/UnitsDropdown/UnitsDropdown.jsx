@@ -1,11 +1,14 @@
 import styles from "./UnitsDropdown.module.css";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleUnits } from "../../src/features/unitsSlice";
 
 const UnitsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [units, setUnits] = useState("Imperial");
+  // const [units, setUnits] = useState("Imperial");
 
-  // i want to set up redux, may move the above state to the store later
+  const currentUnits = useSelector((state) => state.units.units);
+  const dispatch = useDispatch();
 
   const handleOpenMenu = (e) => {
     e.preventDefault();
@@ -33,9 +36,15 @@ const UnitsDropdown = () => {
 
         {isOpen && (
           <ul className={styles.selectUL}>
-            <li className={styles.clickable}>
-              Switch to {units == "Imperial" ? "Imperial" : "Metric"}
+            <li
+              className={styles.clickable}
+              onClick={() => dispatch(toggleUnits())}
+            >
+              Switch to {currentUnits ? "Metric" : "Imperial"}
             </li>
+            {/* <li className={styles.clickable}>
+              Switch to {units == "Imperial" ? "Imperial" : "Metric"}
+            </li> */}
             <hr />
             <li>
               <span>Temperature</span>
