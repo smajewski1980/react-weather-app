@@ -7,12 +7,23 @@ const CurrentWeather = () => {
   const currWindUnit = useSelector((state) => state.units.units.wind);
   const currTempUnit = useSelector((state) => state.units.units.temp);
 
+  // Get current date
+  const now = new Date();
+
+  // Format: "Sunday, Jan 1, 1900"
+  const formattedDate = now.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
     <main>
       <div className={styles.currentWeatherWrapper}>
         <div className={styles.placeTimeWrapper}>
           <h2>Name, Place</h2>
-          <p>Sunday, Jan 1, 1900</p>
+          <p>{formattedDate}</p>
         </div>
         <div className={styles.iconTempWrapper}>
           <img
