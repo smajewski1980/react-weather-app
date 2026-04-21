@@ -1,13 +1,20 @@
 import styles from "./UnitsDropdown.module.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleUnits } from "../../src/features/unitsSlice";
+import {
+  toggleUnit,
+  toggleTempUnit,
+  toggleWindUnit,
+  togglePrecipUnit,
+} from "../../src/features/unitsSlice";
 
 const UnitsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const [units, setUnits] = useState("Imperial");
 
-  const currentUnits = useSelector((state) => state.units.units);
+  const currentUnit = useSelector((state) => state.units.unit);
+  const currTempUnit = useSelector((state) => state.units.units.temp);
+  const currWindUnit = useSelector((state) => state.units.units.wind);
+  const currPrecipUnit = useSelector((state) => state.units.units.precip);
   const dispatch = useDispatch();
 
   const handleOpenMenu = (e) => {
@@ -38,35 +45,103 @@ const UnitsDropdown = () => {
           <ul className={styles.selectUL}>
             <li
               className={styles.clickable}
-              onClick={() => dispatch(toggleUnits())}
+              onClick={() => dispatch(toggleUnit())}
             >
-              Switch to {currentUnits ? "Metric" : "Imperial"}
+              Switch to {currentUnit ? "Metric" : "Imperial"}
             </li>
-            {/* <li className={styles.clickable}>
-              Switch to {units == "Imperial" ? "Imperial" : "Metric"}
-            </li> */}
+
             <hr />
+
             <li>
               <span>Temperature</span>
             </li>
-            <li className={styles.clickable}>Celsius (&deg;C)</li>
-            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+            <li
+              className={[
+                styles.clickable,
+                !currTempUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (currTempUnit) {
+                  dispatch(toggleTempUnit());
+                }
+              }}
+            >
+              Celsius (&deg;C)
+            </li>
+            <li
+              className={[
+                styles.clickable,
+                currTempUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (!currTempUnit) {
+                  dispatch(toggleTempUnit());
+                }
+              }}
+            >
               Farenheit (&deg;F)
             </li>
+
             <hr className={styles.hr} />
             <li>
               <span>Wind Speed</span>
             </li>
-            <li className={styles.clickable}>km/h</li>
-            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+            <li
+              className={[
+                styles.clickable,
+                !currWindUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (currWindUnit) {
+                  dispatch(toggleWindUnit());
+                }
+              }}
+            >
+              km/h
+            </li>
+            <li
+              className={[
+                styles.clickable,
+                currWindUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (!currWindUnit) {
+                  dispatch(toggleWindUnit());
+                }
+              }}
+            >
               mph
             </li>
+
             <hr className={styles.hr} />
+
             <li>
               <span>Precipitation</span>
             </li>
-            <li className={styles.clickable}>Millimeters (mm)</li>
-            <li className={[styles.clickable, styles.activeLi].join(" ")}>
+            <li
+              className={[
+                styles.clickable,
+                !currPrecipUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (currPrecipUnit) {
+                  dispatch(togglePrecipUnit());
+                }
+              }}
+            >
+              Millimeters (mm)
+            </li>
+            <li
+              className={[
+                styles.clickable,
+                currPrecipUnit && styles.activeLi,
+              ].join(" ")}
+              onClick={() => {
+                if (!currPrecipUnit) {
+                  dispatch(togglePrecipUnit());
+                }
+              }}
+            >
               Inches (in)
             </li>
           </ul>
