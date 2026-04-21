@@ -41,6 +41,7 @@
       padding: 0.75rem 0.5rem 0.75rem 3rem;
       border-radius: 10px;
       width: 100%;
+      color: var(--Neutral-200);
 
       @media screen and (width > 750px) {
         min-width: 500px;
