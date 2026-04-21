@@ -47,6 +47,11 @@ main {
     img {
       max-width: 5rem;
     }
+
+    span {
+      font-family: monospace;
+      font-size: 3rem;
+    }
   }
 }
 

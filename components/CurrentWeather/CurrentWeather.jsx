@@ -1,8 +1,11 @@
 import CurrentCard from "../CurrentCard/CurrentCard";
 import styles from "./CurrentWeather.module.css";
+import { useSelector } from "react-redux";
 
 const CurrentWeather = () => {
-  const getScreenWidth = (window) => {};
+  const currPrecipUnit = useSelector((state) => state.units.units.precip);
+  const currWindUnit = useSelector((state) => state.units.units.wind);
+  const currTempUnit = useSelector((state) => state.units.units.temp);
 
   return (
     <main>
@@ -17,12 +20,13 @@ const CurrentWeather = () => {
             alt='snow'
           />
           <p>99&deg;</p>
+          <span>{currTempUnit ? " F" : " C"}</span>
         </div>
       </div>
       <div className={styles.currentCardWrapper}>
         <CurrentCard
           title='Feels Like'
-          value='99&deg;'
+          value={`99\u00B0  ${currTempUnit ? "F" : "C"}`}
         />
         <CurrentCard
           title='Humidity'
@@ -30,11 +34,11 @@ const CurrentWeather = () => {
         />
         <CurrentCard
           title='Wind'
-          value='99 mph'
+          value={`99 ${currWindUnit ? "mph" : "km/h"}`}
         />
         <CurrentCard
           title='Precipitation'
-          value='0 in'
+          value={`0 ${currPrecipUnit ? "in" : "cm"}`}
         />
       </div>
     </main>
