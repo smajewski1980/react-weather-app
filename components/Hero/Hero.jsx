@@ -7,6 +7,7 @@ const Hero = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [cityData, setCityData] = useState([]);
   const [noCityFound, setNoCityFound] = useState(false);
+  const [currentCityId, setCurrentCityId] = useState(-1);
 
   useEffect(() => {
     if (searchTerm.length > 2) {
@@ -37,7 +38,20 @@ const Hero = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getWeather(WEATHER_URL));
+    let selectedCity;
+    // dispatch(getWeather(WEATHER_URL))
+    if (searchTerm.includes(",")) {
+      selectedCity = cityData.find(
+        (city) =>
+          city.admin1 === searchTerm.split(",")[1].trim() &&
+          city.name === searchTerm.split(",")[0],
+      );
+    } else {
+      selectedCity = cityData.find((city) => city.name === searchTerm);
+    }
+    const { latitude, longitude } = selectedCity;
+    console.log(latitude);
+    console.log(longitude);
   };
 
   return (
@@ -59,7 +73,7 @@ const Hero = () => {
             autoComplete='off'
           />
 
-          {noCityFound && <p>No results found.</p>}
+          {noCityFound && !searchTerm.includes(",") && <p>No results found.</p>}
 
           <datalist id='cityList'>
             {cityData &&
@@ -67,10 +81,11 @@ const Hero = () => {
                 (city, idx) =>
                   idx < 5 && (
                     <option
-                      key={idx}
-                      value={city.name}
+                      key={city.id}
+                      value={`${city.name}${city.admin1 ? ", " + city.admin1 : ""}`}
+                      data-id={city.id}
                     >
-                      {city.admin1}
+                      {/* {city.admin1} */}
                     </option>
                   ),
               )}
