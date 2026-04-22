@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CurrentCard from "../CurrentCard/CurrentCard";
 import styles from "./CurrentWeather.module.css";
 import { useSelector } from "react-redux";
@@ -6,6 +7,17 @@ const CurrentWeather = () => {
   const currPrecipUnit = useSelector((state) => state.units.units.precip);
   const currWindUnit = useSelector((state) => state.units.units.wind);
   const currTempUnit = useSelector((state) => state.units.units.temp);
+
+  const currentWeatherData = useSelector((state) => state.weather.weatherInfo);
+  const currentTemp = useSelector(
+    (state) => state.weather.weatherInfo.current.temperature_2m,
+  );
+  const currentCity = useSelector((state) => state.weather.currentCity);
+  const weatherCode = useSelector(
+    (state) => state.weather.weatherInfo.current.weather_code,
+  );
+
+  let imgAltText = "";
 
   // Get current date
   const now = new Date();
@@ -18,19 +30,55 @@ const CurrentWeather = () => {
     year: "numeric",
   });
 
+  function getWeatherIconFromCode(code) {
+    console.log(code);
+    if (code === 0) {
+      imgAltText = "sunny";
+      return "../src/assets/images/icon-sunny.webp";
+    } else if (code > 0 && code < 3) {
+      imgAltText = "partly cloudy";
+      return "../src/assets/images/icon-partly-cloudy.webp";
+    } else if (code === 3) {
+      imgAltText = "overcast";
+      return "../src/assets/images/icon-overcast.webp";
+    } else if (code > 44 && code < 49) {
+      imgAltText = "fog";
+      return "../src/assets/images/icon-fog.webp";
+    } else if (code > 50 && code < 56) {
+      imgAltText = "drizzle";
+      return "../src/assets/images/icon-drizzle.webp";
+    } else if (
+      (code > 60 && code < 66) ||
+      (code > 79 && code < 83) ||
+      (code > 94 && code < 100)
+    ) {
+      imgAltText = "rain";
+      return "../src/assets/images/icon-rain.webp";
+    } else if (
+      (code > 55 && code < 58) ||
+      (code > 65 && code < 68) ||
+      (code > 70 && code < 78) ||
+      (code > 84 && code < 87)
+    ) {
+      imgAltText = "snow";
+      return "../src/assets/images/icon-snow.webp";
+    } else return null;
+  }
+
   return (
     <main>
       <div className={styles.currentWeatherWrapper}>
         <div className={styles.placeTimeWrapper}>
-          <h2>Name, Place</h2>
+          <h2>{currentCity}</h2>
           <p>{formattedDate}</p>
         </div>
         <div className={styles.iconTempWrapper}>
           <img
-            src='../src/assets/images/icon-snow.webp'
-            alt='snow'
+            src={getWeatherIconFromCode(weatherCode)}
+            alt={imgAltText}
+            title={imgAltText}
           />
-          <p>99&deg;</p>
+          <p>{Math.floor(currentTemp)}&deg;</p>
           <span>{currTempUnit ? " F" : " C"}</span>
         </div>
       </div>

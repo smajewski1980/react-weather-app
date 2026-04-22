@@ -1,6 +1,7 @@
 import styles from "./UnitsDropdown.module.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getWeather } from "../../src/features/weatherSlice";
 import {
   toggleUnit,
   toggleTempUnit,
@@ -45,7 +46,10 @@ const UnitsDropdown = () => {
           <ul className={styles.selectUL}>
             <li
               className={styles.clickable}
-              onClick={() => dispatch(toggleUnit())}
+              onClick={() => {
+                dispatch(toggleUnit());
+                dispatch(getWeather());
+              }}
             >
               Switch to {currentUnit ? "Metric" : "Imperial"}
             </li>

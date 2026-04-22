@@ -1,24 +1,42 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  weatherInfo: {},
+  weatherInfo: {
+    current: {
+      temperature_2m: "",
+    },
+  },
   isLoading: false,
   error: null,
+  currentCity: "",
 };
 
 export const getWeather = createAsyncThunk(
   "weather/getWeather",
-  async (data, thunkAPI) => {
+  async (url, thunkAPI) => {
+    // console.log(url);
+    const res = await fetch(url);
+    const data = await res.json();
     console.log(data);
-    // get the weather and return it
-    return "heres the data";
+
+    return data;
   },
 );
+
+function normailizeApiData(state, data) {
+  state.weatherInfo["current"] = data.current;
+  state.weatherInfo["hourly"] = data.hourly;
+  state.weatherInfo["daily"] = data.daily;
+}
 
 const weatherSlice = createSlice({
   name: "weather",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentCity: (state, action) => {
+      state.currentCity = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(getWeather.pending, (state) => {
@@ -26,8 +44,8 @@ const weatherSlice = createSlice({
       })
       .addCase(getWeather.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("action from fullfilled", action);
         // put the now gotten data into the store
+        normailizeApiData(state, action.payload);
       })
       .addCase(getWeather.rejected, (state, action) => {
         state.isLoading = false;
@@ -36,4 +54,5 @@ const weatherSlice = createSlice({
   },
 });
 
+export const { setCurrentCity } = weatherSlice.actions;
 export default weatherSlice.reducer;

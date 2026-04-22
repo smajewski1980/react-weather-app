@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
-import { getWeather } from "../../src/features/weatherSlice";
-import { useDispatch } from "react-redux";
+import { getWeather, setCurrentCity } from "../../src/features/weatherSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Hero = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [cityData, setCityData] = useState([]);
   const [noCityFound, setNoCityFound] = useState(false);
   const [currentCityId, setCurrentCityId] = useState(-1);
+
+  // boolean, true Imp. false Metr.
+  // const currentUnit = useSelector((state) => state.units.unit);
+  const currTempUnit = useSelector((state) => state.units.units.temp);
+  const currWindUnit = useSelector((state) => state.units.units.wind);
+  const currPrecipUnit = useSelector((state) => state.units.units.precip);
 
   useEffect(() => {
     if (searchTerm.length > 2) {
@@ -34,12 +40,10 @@ const Hero = () => {
   }, [searchTerm]);
 
   const dispatch = useDispatch();
-  const WEATHER_URL = `url blah blah ${searchTerm}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let selectedCity;
-    // dispatch(getWeather(WEATHER_URL))
     if (searchTerm.includes(",")) {
       selectedCity = cityData.find(
         (city) =>
@@ -49,9 +53,27 @@ const Hero = () => {
     } else {
       selectedCity = cityData.find((city) => city.name === searchTerm);
     }
+
     const { latitude, longitude } = selectedCity;
-    console.log(latitude);
-    console.log(longitude);
+
+    const WEATHER_URL =
+      "https://" +
+      "api.open-meteo.com/v1/forecast" +
+      `?latitude=${latitude}&longitude=${longitude}` +
+      "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
+      "&hourly=temperature_2m,weather_code" +
+      "&current=temperature_2m,weather_code,apparent_temperature" +
+      "&timezone=auto" +
+      "&past_days=0" +
+      "&forecast_days=7" +
+      `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
+      `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
+      `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+
+    dispatch(getWeather(WEATHER_URL));
+    dispatch(setCurrentCity(searchTerm));
+    // console.log(latitude);
+    // console.log(longitude);
   };
 
   return (
