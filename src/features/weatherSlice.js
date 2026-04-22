@@ -3,7 +3,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   weatherInfo: {
     current: {
-      temperature_2m: "",
+      temperature_2m: Number(),
+      apparent_temperature: Number(),
+      relative_humidity_2m: Number(),
+      wind_speed_10m: Number(),
+      precipitation: Number(),
     },
   },
   isLoading: false,
@@ -27,6 +31,7 @@ function normailizeApiData(state, data) {
   state.weatherInfo["current"] = data.current;
   state.weatherInfo["hourly"] = data.hourly;
   state.weatherInfo["daily"] = data.daily;
+  console.log(data.current);
 }
 
 const weatherSlice = createSlice({

@@ -16,6 +16,18 @@ const CurrentWeather = () => {
   const weatherCode = useSelector(
     (state) => state.weather.weatherInfo.current.weather_code,
   );
+  const feelsLike = useSelector(
+    (state) => state.weather.weatherInfo.current.apparent_temperature,
+  );
+  const humidity = useSelector(
+    (state) => state.weather.weatherInfo.current.relative_humidity_2m,
+  );
+  const wind = useSelector(
+    (state) => state.weather.weatherInfo.current.wind_speed_10m,
+  );
+  const precip = useSelector(
+    (state) => state.weather.weatherInfo.current.precipitation,
+  );
 
   let imgAltText = "";
 
@@ -31,7 +43,6 @@ const CurrentWeather = () => {
   });
 
   function getWeatherIconFromCode(code) {
-    console.log(code);
     if (code === 0) {
       imgAltText = "sunny";
       return "../src/assets/images/icon-sunny.webp";
@@ -85,19 +96,19 @@ const CurrentWeather = () => {
       <div className={styles.currentCardWrapper}>
         <CurrentCard
           title='Feels Like'
-          value={`99\u00B0  ${currTempUnit ? "F" : "C"}`}
+          value={`${Math.round(feelsLike)}\u00B0  ${currTempUnit ? "F" : "C"}`}
         />
         <CurrentCard
           title='Humidity'
-          value='47%'
+          value={`${humidity} %`}
         />
         <CurrentCard
           title='Wind'
-          value={`99 ${currWindUnit ? "mph" : "km/h"}`}
+          value={`${Math.round(wind)} ${currWindUnit ? "mph" : "km/h"}`}
         />
         <CurrentCard
           title='Precipitation'
-          value={`0 ${currPrecipUnit ? "in" : "cm"}`}
+          value={`${precip} ${currPrecipUnit ? "in" : "cm"}`}
         />
       </div>
     </main>

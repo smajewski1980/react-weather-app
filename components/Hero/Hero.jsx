@@ -9,7 +9,7 @@ const Hero = () => {
   const [noCityFound, setNoCityFound] = useState(false);
   const [currentCityId, setCurrentCityId] = useState(-1);
 
-  // boolean, true Imp. false Metr.
+  // boolean, true = Imperial, false = Metric
   // const currentUnit = useSelector((state) => state.units.unit);
   const currTempUnit = useSelector((state) => state.units.units.temp);
   const currWindUnit = useSelector((state) => state.units.units.wind);
@@ -62,7 +62,7 @@ const Hero = () => {
       `?latitude=${latitude}&longitude=${longitude}` +
       "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
       "&hourly=temperature_2m,weather_code" +
-      "&current=temperature_2m,weather_code,apparent_temperature" +
+      "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
       "&timezone=auto" +
       "&past_days=0" +
       "&forecast_days=7" +
