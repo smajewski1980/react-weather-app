@@ -1,9 +1,10 @@
 import styles from "./DailyCard.module.css";
+import getWeatherIconFromCode from "../../src/utilities/getWeatherIconFromCode";
 
-const DailyCard = () => {
+const DailyCard = ({ day }) => {
   return (
     <div className={styles.dailyCard}>
-      <p>day</p>
+      <p>{day}</p>
       <img
         src='../../src/assets/images/icon-storm.webp'
         alt='icon'
