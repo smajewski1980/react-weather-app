@@ -1,7 +1,7 @@
 import styles from "./DailyCard.module.css";
 import getWeatherIconFromCode from "../../src/utilities/getWeatherIconFromCode";
 
-const DailyCard = ({ day, weatherCode }) => {
+const DailyCard = ({ day, weatherCode, minTemp, maxTemp }) => {
   return (
     <div className={styles.dailyCard}>
       <p>{day}</p>
@@ -10,8 +10,8 @@ const DailyCard = ({ day, weatherCode }) => {
         alt='icon'
       />
       <div className={styles.dailyTempWrapper}>
-        <p>12&deg;</p>
-        <p>47&deg;</p>
+        <p>{Math.round(minTemp)}&deg;</p>
+        <p>{Math.round(maxTemp)}&deg;</p>
       </div>
     </div>
   );
