@@ -65,7 +65,7 @@ const Hero = () => {
       "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
       "&timezone=auto" +
       "&past_days=0" +
-      "&forecast_days=7" +
+      "&forecast_days=14" +
       `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
       `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
       `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
