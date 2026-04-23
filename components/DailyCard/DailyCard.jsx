@@ -1,12 +1,12 @@
 import styles from "./DailyCard.module.css";
 import getWeatherIconFromCode from "../../src/utilities/getWeatherIconFromCode";
 
-const DailyCard = ({ day }) => {
+const DailyCard = ({ day, weatherCode }) => {
   return (
     <div className={styles.dailyCard}>
       <p>{day}</p>
       <img
-        src='../../src/assets/images/icon-storm.webp'
+        src={getWeatherIconFromCode(weatherCode)[0]}
         alt='icon'
       />
       <div className={styles.dailyTempWrapper}>
