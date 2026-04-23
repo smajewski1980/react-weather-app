@@ -13,16 +13,14 @@ const initialState = {
   isLoading: false,
   error: null,
   currentCity: "",
+  appIsShowing: false,
 };
 
 export const getWeather = createAsyncThunk(
   "weather/getWeather",
   async (url, thunkAPI) => {
-    // console.log(url);
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
-
     return data;
   },
 );
@@ -31,7 +29,8 @@ function normailizeApiData(state, data) {
   state.weatherInfo["current"] = data.current;
   state.weatherInfo["hourly"] = data.hourly;
   state.weatherInfo["daily"] = data.daily;
-  console.log(data.current);
+  state.appIsShowing = true;
+  // console.log(data.current);
 }
 
 const weatherSlice = createSlice({
@@ -46,6 +45,7 @@ const weatherSlice = createSlice({
     builder
       .addCase(getWeather.pending, (state) => {
         state.isLoading = true;
+        state.appIsShowing = false;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
         state.isLoading = false;

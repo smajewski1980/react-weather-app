@@ -58,3 +58,62 @@ body {
   flex-basis: 750px;
   margin-inline: auto;
 }
+
+.loading {
+  font-size: 3rem;
+  text-align: center;
+  font-family: Bricolage_Grotesque;
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+}
+.animation {
+  position: absolute;
+  bottom: 0rem;
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+}
+
+.loading1 {
+  animation-name: loading-animation;
+  left: calc(100% + 0.5rem);
+}
+.loading2 {
+  animation-name: loading-animation2;
+  left: calc(100% + 1.5rem);
+}
+.loading3 {
+  animation-name: loading-animation3;
+  left: calc(100% + 2.5rem);
+}
+
+@keyframes loading-animation {
+  0%,
+  100% {
+    bottom: 0rem;
+  }
+
+  50% {
+    bottom: 2rem;
+  }
+}
+@keyframes loading-animation2 {
+  25%,
+  100% {
+    bottom: 0rem;
+  }
+
+  62.5% {
+    bottom: 2rem;
+  }
+}
+@keyframes loading-animation3 {
+  50%,
+  100% {
+    bottom: 0rem;
+  }
+
+  75% {
+    bottom: 2rem;
+  }
+}

@@ -5,19 +5,32 @@ import Hero from "../components/Hero/Hero";
 import HourlyForecast from "../components/HourlyForecast/HourlyForecast";
 import "./App.css";
 import Error from "../components/Error/Error";
+import { useSelector } from "react-redux";
 
 function App() {
+  const appIsShowing = useSelector((state) => state.weather.appIsShowing);
+  const isLoading = useSelector((state) => state.weather.isLoading);
+
   return (
     <>
       <Header />
       <Hero />
-      <div className='mainLayout'>
-        <div className='innerLayout'>
-          <CurrentWeather />
-          <DailyForecast />
+      {isLoading && (
+        <p className='loading'>
+          Loading<span className='animation loading1'>.</span>
+          <span className='animation loading2'>.</span>
+          <span className='animation loading3'>.</span>
+        </p>
+      )}
+      {appIsShowing && (
+        <div className='mainLayout'>
+          <div className='innerLayout'>
+            <CurrentWeather />
+            <DailyForecast />
+          </div>
+          <HourlyForecast />
         </div>
-        <HourlyForecast />
-      </div>
+      )}
     </>
   );
 }
