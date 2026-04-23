@@ -2,13 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
   weatherInfo: {
-    current: {
-      temperature_2m: Number(),
-      apparent_temperature: Number(),
-      relative_humidity_2m: Number(),
-      wind_speed_10m: Number(),
-      precipitation: Number(),
-    },
+    current: {},
   },
   isLoading: false,
   error: null,
