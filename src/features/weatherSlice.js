@@ -9,6 +9,8 @@ const initialState = {
   currentCity: "",
   appIsShowing: false,
   hourlyAdvance: 0,
+  currLatitude: "",
+  currLongitude: "",
 };
 
 export const getWeather = createAsyncThunk(
@@ -38,6 +40,12 @@ const weatherSlice = createSlice({
     setHourlyAdvance: (state, action) => {
       state.hourlyAdvance = action.payload;
     },
+    setCurrLatitude: (state, action) => {
+      state.currLatitude = action.payload;
+    },
+    setCurrLongitude: (state, action) => {
+      state.currLongitude = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -57,5 +65,10 @@ const weatherSlice = createSlice({
   },
 });
 
-export const { setCurrentCity, setHourlyAdvance } = weatherSlice.actions;
+export const {
+  setCurrentCity,
+  setHourlyAdvance,
+  setCurrLatitude,
+  setCurrLongitude,
+} = weatherSlice.actions;
 export default weatherSlice.reducer;

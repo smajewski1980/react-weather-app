@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
-import { getWeather, setCurrentCity } from "../../src/features/weatherSlice";
+import {
+  getWeather,
+  setCurrentCity,
+  setCurrLatitude,
+  setCurrLongitude,
+} from "../../src/features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Hero = () => {
@@ -55,6 +60,8 @@ const Hero = () => {
     }
 
     const { latitude, longitude } = selectedCity;
+    dispatch(setCurrLatitude(latitude));
+    dispatch(setCurrLongitude(longitude));
 
     const WEATHER_URL =
       "https://" +
@@ -72,8 +79,6 @@ const Hero = () => {
 
     dispatch(getWeather(WEATHER_URL));
     dispatch(setCurrentCity(searchTerm));
-    // console.log(latitude);
-    // console.log(longitude);
   };
 
   return (

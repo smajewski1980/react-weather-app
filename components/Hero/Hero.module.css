@@ -68,6 +68,7 @@
     padding: 0.75rem 1rem;
     background-color: var(--Blue-500);
     color: var(--Neutral-0);
+    cursor: pointer;
 
     @media screen and (width < 750px) {
       width: 100%;

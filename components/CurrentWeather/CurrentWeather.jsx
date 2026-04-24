@@ -73,7 +73,7 @@ const CurrentWeather = () => {
         />
         <CurrentCard
           title='Precipitation'
-          value={`${precip} ${currPrecipUnit ? "in" : "cm"}`}
+          value={`${precip.toFixed(1)} ${currPrecipUnit ? "in" : "mm"}`}
         />
       </div>
     </main>
