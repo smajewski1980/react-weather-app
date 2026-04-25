@@ -17,10 +17,10 @@ const initialState = {
 export const getWeather = createAsyncThunk(
   "weather/getWeather",
   async (url, { getState }) => {
-    console.log(url);
     const state = getState();
+    // this sets the url when the error page retry button is clicked
     if (!url) url = state.weather.currURL;
-    console.log(url);
+
     const res = await fetch(url);
     const data = await res.json();
     return data;
@@ -32,7 +32,7 @@ function normailizeApiData(state, data) {
   state.weatherInfo["hourly"] = data.hourly;
   state.weatherInfo["daily"] = data.daily;
   state.appIsShowing = true;
-  console.log(data.hourly);
+  // console.log(data.hourly);
 }
 
 const weatherSlice = createSlice({

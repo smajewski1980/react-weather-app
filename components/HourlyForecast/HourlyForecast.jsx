@@ -18,20 +18,12 @@ const HourlyForecast = () => {
   const dayOffset = useSelector((state) => state.weather.hourlyAdvance);
   // today
   const currentDateTime = new Date();
-  // today plus the offset
-  currentDateTime.setDate(currentDateTime.getDate() + dayOffset);
-  // finese the string format to match the api data
-  const splitDateTime = currentDateTime.toISOString().split(":");
-  splitDateTime[1] = "00";
-  const formattedDateTime = splitDateTime.slice(0, 2).join(":");
-  // the array index for the current hour
-  const currentTimeIdx = hourlyTimesArray.indexOf(formattedDateTime);
 
-  // get the current hour
+  // get the current hour and index for data arrays
   const currentHour = currentDateTime.getHours();
-  console.log("curr hr", currentHour);
-  console.log("curr time idx", currentTimeIdx);
-  console.log(splitDateTime);
+  const currentTimeIdx = dayOffset
+    ? (currentHour % 24) * (dayOffset + 1)
+    : currentHour % 24;
 
   return (
     <aside className={styles.hourlyAside}>
