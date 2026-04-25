@@ -80,9 +80,9 @@ const UnitsDropdown = () => {
                     "&past_days=0" +
                     "&forecast_days=14" +
                     // getting the opposite of the current
-                    `${!currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${!currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${!currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                    `${!currentUnit ? "&wind_speed_unit=mph" : ""}` +
+                    `${!currentUnit ? "&temperature_unit=fahrenheit" : ""}` +
+                    `${!currentUnit ? "&precipitation_unit=inch" : ""}`;
                   dispatch(getWeather(updated_URL));
                   setIsOpen((prev) => (prev = !prev));
                 }
