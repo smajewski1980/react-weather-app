@@ -23,6 +23,7 @@ const Error = () => {
           alt=''
         />
         Retry
+        {/* make the button drop the error or try again if we can do it */}
       </button>
     </div>
   );

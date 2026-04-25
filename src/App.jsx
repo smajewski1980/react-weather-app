@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 function App() {
   const appIsShowing = useSelector((state) => state.weather.appIsShowing);
   const isLoading = useSelector((state) => state.weather.isLoading);
+  const isError = useSelector((state) => state.weather.error);
 
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
           <span className='animation loading3'>.</span>
         </p>
       )}
+      {isError && <Error />}
       {appIsShowing && (
         <div className='mainLayout'>
           <div className='innerLayout'>

@@ -29,6 +29,9 @@ const HourlyForecast = () => {
 
   // get the current hour
   const currentHour = currentDateTime.getHours();
+  console.log("curr hr", currentHour);
+  console.log("curr time idx", currentTimeIdx);
+  console.log(splitDateTime);
 
   return (
     <aside className={styles.hourlyAside}>
