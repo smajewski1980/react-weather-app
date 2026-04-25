@@ -1,6 +1,9 @@
 import styles from "./Error.module.css";
+import { getWeather } from "../../src/features/weatherSlice";
+import { useDispatch } from "react-redux";
 
 const Error = () => {
+  const dispatch = useDispatch();
   return (
     <div
       role='alert'
@@ -17,13 +20,17 @@ const Error = () => {
         We couldn't connect to the server (API error). Please try again in a few
         moments.
       </p>
-      <button>
+      <button
+        onClick={() => {
+          console.log("getting here");
+          dispatch(getWeather(null));
+        }}
+      >
         <img
           src='../../src/assets/images/icon-retry.svg'
           alt=''
         />
         Retry
-        {/* make the button drop the error or try again if we can do it */}
       </button>
     </div>
   );

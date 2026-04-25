@@ -5,6 +5,7 @@ import {
   setCurrentCity,
   setCurrLatitude,
   setCurrLongitude,
+  setCurrURL,
 } from "../../src/features/weatherSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -79,6 +80,7 @@ const Hero = () => {
 
     dispatch(getWeather(WEATHER_URL));
     dispatch(setCurrentCity(searchTerm));
+    dispatch(setCurrURL(WEATHER_URL));
   };
 
   return (

@@ -11,11 +11,16 @@ const initialState = {
   hourlyAdvance: 0,
   currLatitude: "",
   currLongitude: "",
+  currURL: "",
 };
 
 export const getWeather = createAsyncThunk(
   "weather/getWeather",
-  async (url, thunkAPI) => {
+  async (url, { getState }) => {
+    console.log(url);
+    const state = getState();
+    if (!url) url = state.weather.currURL;
+    console.log(url);
     const res = await fetch(url);
     const data = await res.json();
     return data;
@@ -46,6 +51,9 @@ const weatherSlice = createSlice({
     setCurrLongitude: (state, action) => {
       state.currLongitude = action.payload;
     },
+    setCurrURL: (state, action) => {
+      state.currURL = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -73,5 +81,6 @@ export const {
   setHourlyAdvance,
   setCurrLatitude,
   setCurrLongitude,
+  setCurrURL,
 } = weatherSlice.actions;
 export default weatherSlice.reducer;
