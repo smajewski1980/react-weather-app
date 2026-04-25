@@ -22,22 +22,12 @@ const UnitsDropdown = () => {
 
   const handleOpenMenu = (e) => {
     e.preventDefault();
-    setIsOpen((prev) => (prev = !prev));
+    setIsOpen((prev) => !prev);
   };
 
-  const WEATHER_URL =
-    "https://" +
-    "api.open-meteo.com/v1/forecast" +
-    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-    "&hourly=temperature_2m,weather_code" +
-    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-    "&timezone=auto" +
-    "&past_days=0" +
-    "&forecast_days=14" +
-    `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-    `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-    `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+  const buildWeatherURL = (additionalParams = "") => {
+    return `https://api.open-meteo.com/v1/forecast?latitude=${currLatitude}&longitude=${currLongitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto&past_days=0&forecast_days=14${additionalParams}`;
+  };
 
   return (
     <>
@@ -64,27 +54,12 @@ const UnitsDropdown = () => {
               className={styles.clickable}
               onClick={() => {
                 dispatch(toggleUnit());
-
-                // its ugly, and i feel like it's hacky
-                // the above dispatch doesnt update in time for the below dispatch
-                // to have the correct url, this is getting around that by just (goto 82)
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    // getting the opposite of the current
-                    `${!currentUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${!currentUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${!currentUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${!currentUnit ? "&wind_speed_unit=mph" : ""}${!currentUnit ? "&temperature_unit=fahrenheit" : ""}${!currentUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
@@ -106,21 +81,11 @@ const UnitsDropdown = () => {
                   dispatch(toggleTempUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${!currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}${!currTempUnit ? "&temperature_unit=fahrenheit" : ""}${currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
@@ -136,25 +101,15 @@ const UnitsDropdown = () => {
                   dispatch(toggleTempUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${!currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}${!currTempUnit ? "&temperature_unit=fahrenheit" : ""}${currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
-              Farenheit (&deg;F)
+              Fahrenheit (&deg;F)
             </li>
 
             <hr className={styles.hr} />
@@ -171,21 +126,11 @@ const UnitsDropdown = () => {
                   dispatch(toggleWindUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${!currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${!currWindUnit ? "&wind_speed_unit=mph" : ""}${currTempUnit ? "&temperature_unit=fahrenheit" : ""}${currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
@@ -201,21 +146,11 @@ const UnitsDropdown = () => {
                   dispatch(toggleWindUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${!currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${!currWindUnit ? "&wind_speed_unit=mph" : ""}${currTempUnit ? "&temperature_unit=fahrenheit" : ""}${currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
@@ -237,21 +172,11 @@ const UnitsDropdown = () => {
                   dispatch(togglePrecipUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${!currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}${currTempUnit ? "&temperature_unit=fahrenheit" : ""}${!currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
@@ -267,21 +192,11 @@ const UnitsDropdown = () => {
                   dispatch(togglePrecipUnit());
                 }
                 if (currLatitude && currLongitude) {
-                  const updated_URL =
-                    "https://" +
-                    "api.open-meteo.com/v1/forecast" +
-                    `?latitude=${currLatitude}&longitude=${currLongitude}` +
-                    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
-                    "&hourly=temperature_2m,weather_code" +
-                    "&current=temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m" +
-                    "&timezone=auto" +
-                    "&past_days=0" +
-                    "&forecast_days=14" +
-                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}` +
-                    `${currTempUnit ? "&temperature_unit=fahrenheit" : ""}` +
-                    `${!currPrecipUnit ? "&precipitation_unit=inch" : ""}`;
+                  const updated_URL = buildWeatherURL(
+                    `${currWindUnit ? "&wind_speed_unit=mph" : ""}${currTempUnit ? "&temperature_unit=fahrenheit" : ""}${currPrecipUnit ? "&precipitation_unit=inch" : ""}`,
+                  );
                   dispatch(getWeather(updated_URL));
-                  setIsOpen((prev) => (prev = !prev));
+                  setIsOpen(false);
                 }
               }}
             >
