@@ -20,14 +20,17 @@ export const getWeather = createAsyncThunk(
     const state = getState();
     // this sets the url when the error page retry button is clicked
     if (!url) url = state.weather.currURL;
-
-    const res = await fetch(url);
-    const data = await res.json();
-    return data;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   },
 );
 
-function normailizeApiData(state, data) {
+function normalizeApiData(state, data) {
   state.weatherInfo["current"] = data.current;
   state.weatherInfo["hourly"] = data.hourly;
   state.weatherInfo["daily"] = data.daily;
@@ -65,7 +68,7 @@ const weatherSlice = createSlice({
       .addCase(getWeather.fulfilled, (state, action) => {
         state.isLoading = false;
         // put the now gotten data into the store
-        normailizeApiData(state, action.payload);
+        normalizeApiData(state, action.payload);
       })
       .addCase(getWeather.rejected, (state, action) => {
         state.isLoading = false;

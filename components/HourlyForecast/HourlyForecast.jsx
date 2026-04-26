@@ -32,54 +32,15 @@ const HourlyForecast = () => {
         <HourlyDropdown />
       </div>
 
-      <HourlyCard
-        time={currentHour % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx]}
-        meridiem={currentHour < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 1) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 1])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 1]}
-        meridiem={(currentHour + 1) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 2) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 2])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 2]}
-        meridiem={(currentHour + 2) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 3) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 3])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 3]}
-        meridiem={(currentHour + 3) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 4) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 4])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 4]}
-        meridiem={(currentHour + 4) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 5) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 5])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 5]}
-        meridiem={(currentHour + 5) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 6) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 6])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 6]}
-        meridiem={(currentHour + 6) % 24 < 12 ? "am" : "pm"}
-      />
-      <HourlyCard
-        time={(currentHour + 7) % 12}
-        temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + 7])}\u00B0`}
-        code={weatherCodesArray[currentTimeIdx + 7]}
-        meridiem={(currentHour + 7) % 24 < 12 ? "am" : "pm"}
-      />
+      {Array.from({ length: 8 }, (_, index) => (
+        <HourlyCard
+          key={index}
+          time={(currentHour + index) % 12}
+          temp={`${Math.floor(hourlyTempsArray[currentTimeIdx + index])}\u00B0`}
+          code={weatherCodesArray[currentTimeIdx + index]}
+          meridiem={(currentHour + index) % 24 < 12 ? "am" : "pm"}
+        />
+      ))}
     </aside>
   );
 };

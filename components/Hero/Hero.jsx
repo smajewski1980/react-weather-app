@@ -60,6 +60,8 @@ const Hero = () => {
       selectedCity = cityData.find((city) => city.name === searchTerm);
     }
 
+    if (!selectedCity) return;
+
     const { latitude, longitude } = selectedCity;
     dispatch(setCurrLatitude(latitude));
     dispatch(setCurrLongitude(longitude));
@@ -113,9 +115,7 @@ const Hero = () => {
                       key={city.id}
                       value={`${city.name}${city.admin1 ? ", " + city.admin1 : ""}`}
                       data-id={city.id}
-                    >
-                      {/* {city.admin1} */}
-                    </option>
+                    ></option>
                   ),
               )}
           </datalist>

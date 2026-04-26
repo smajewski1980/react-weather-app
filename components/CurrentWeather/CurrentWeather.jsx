@@ -41,6 +41,8 @@ const CurrentWeather = () => {
     year: "numeric",
   });
 
+  const icon = getWeatherIconFromCode(weatherCode);
+
   return (
     <main>
       <div className={styles.currentWeatherWrapper}>
@@ -50,9 +52,9 @@ const CurrentWeather = () => {
         </div>
         <div className={styles.iconTempWrapper}>
           <img
-            src={getWeatherIconFromCode(weatherCode)[0]}
-            alt={getWeatherIconFromCode(weatherCode)[1]}
-            title={getWeatherIconFromCode(weatherCode)[1]}
+            src={icon[0]}
+            alt={icon[1]}
+            title={icon[1]}
           />
           <p>{Math.floor(currentTemp)}&deg;</p>
           <span>{currTempUnit ? " F" : " C"}</span>
