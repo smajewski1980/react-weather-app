@@ -99,9 +99,12 @@ const Hero = () => {
             name='searchTerm'
             id='search-term'
             placeholder='Search for a city...'
+            pattern='^[a-zA-Z\s\-\,]+$'
+            title='Please only use letters, spaces, hypens or commas.'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             autoComplete='off'
+            required={true}
           />
 
           {noCityFound && !searchTerm.includes(",") && <p>No results found.</p>}
