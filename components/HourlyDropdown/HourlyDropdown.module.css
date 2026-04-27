@@ -5,15 +5,16 @@
   padding: 0.35rem 0.75rem;
   border: none;
   background-color: var(--Neutral-600);
+  color: var(--Neutral-0);
 
   &::picker(select) {
     appearance: base-select;
     border: none;
-    color: var(--Neutral-200);
     position-area: block-end span-inline-start;
     margin-block-start: 0.75rem;
     border-radius: 5px;
     background-color: var(--Neutral-800);
+    color: var(--Neutral-0);
   }
 
   option {

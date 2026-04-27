@@ -25,6 +25,7 @@
     display: grid;
     gap: 0.5rem;
     border-radius: 10px;
+    z-index: 99;
 
     li:first-child {
       margin-block-end: 0.5rem;
