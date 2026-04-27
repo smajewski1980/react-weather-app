@@ -8,6 +8,8 @@ import {
   toggleWindUnit,
   togglePrecipUnit,
 } from "../../src/features/unitsSlice";
+import iconUnits from "../../src/assets/images/icon-units.svg";
+import iconDropdown from "../../src/assets/images/icon-dropdown.svg";
 
 const UnitsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,12 +40,12 @@ const UnitsDropdown = () => {
           onClick={handleOpenMenu}
         >
           <img
-            src='../../src/assets/images/icon-units.svg'
+            src={iconUnits}
             alt=''
           />
           <span>Units</span>
           <img
-            src='../../src/assets/images/icon-dropdown.svg'
+            src={iconDropdown}
             alt=''
           />
         </button>
